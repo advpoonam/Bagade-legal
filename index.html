@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bagade Legal Associates</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:#000;
+font-family:'Poppins',sans-serif;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+}
+
+/* FRAME */
+.frame{
+width:100%;
+max-width:420px;
+aspect-ratio:9/16;
+border-radius:24px;
+overflow:hidden;
+position:relative;
+background:#000;
+box-shadow:0 0 80px rgba(255,215,0,0.35);
+}
+
+/* ANIMATED BACKGROUND */
+.bg{
+position:absolute;
+inset:0;
+background:
+linear-gradient(-45deg,#050505,#1a1a1a,#2a1f00,#111);
+background-size:400% 400%;
+animation:bgMove 12s ease infinite;
+}
+
+/* LIGHT WAVES */
+.bg::before{
+content:"";
+position:absolute;
+width:200%;
+height:200%;
+background:
+radial-gradient(circle,rgba(255,215,0,0.15),transparent 60%);
+top:-50%;
+left:-50%;
+animation:wave 10s linear infinite;
+}
+
+/* PARTICLES */
+.particle{
+position:absolute;
+width:3px;
+height:3px;
+background:#ffd700;
+border-radius:50%;
+opacity:0.6;
+animation:float 6s infinite linear;
+}
+
+/* TOP NAMEPLATE */
+.nameplate{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+padding:12px 10px;
+text-align:center;
+background:rgba(0,0,0,0.65);
+backdrop-filter:blur(6px);
+z-index:12;
+}
+
+.nameplate h1{
+font-size:22px;
+color:#ffd700;
+letter-spacing:1px;
+text-shadow:
+0 0 10px rgba(255,215,0,0.7),
+0 0 25px rgba(255,215,0,0.5);
+}
+
+.nameplate p{
+font-size:12px;
+color:#ddd;
+letter-spacing:1px;
+margin-top:2px;
+}
+
+/* SCENE */
+.scene{
+position:absolute;
+inset:0;
+z-index:2;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:90px 25px 90px;
+opacity:0;
+transform:scale(0.95);
+transition:all 1s ease;
+}
+
+.scene.active{
+opacity:1;
+transform:scale(1);
+}
+
+/* TEXT EFFECTS */
+.glow{
+color:#ffd700;
+text-shadow:
+0 0 10px rgba(255,215,0,0.6),
+0 0 25px rgba(255,215,0,0.4);
+animation:glowPulse 2.5s infinite;
+}
+
+.shimmer{
+background:linear-gradient(
+90deg,
+#d4af37,
+#fff7b0,
+#d4af37
+);
+background-size:200%;
+-webkit-background-clip:text;
+color:transparent;
+animation:shimmer 3s linear infinite;
+}
+
+h2{
+font-size:24px;
+margin-top:10px;
+}
+
+p{
+font-size:14px;
+margin-top:10px;
+color:#eee;
+line-height:1.6;
+}
+
+/* TIP BOX */
+.tip{
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(8px);
+border-radius:12px;
+padding:14px;
+margin-top:12px;
+border:1px solid rgba(255,255,255,0.08);
+}
+
+/* FOOTER */
+.footer{
+position:absolute;
+bottom:60px;
+width:100%;
+text-align:center;
+font-size:13px;
+color:#eee;
+z-index:3;
+}
+
+/* FIXED BOTTOM CTA BAR */
+.bottom-cta{
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+background:rgba(0,0,0,0.85);
+backdrop-filter:blur(6px);
+padding:10px 12px;
+display:flex;
+justify-content:space-around;
+align-items:center;
+z-index:10;
+}
+
+/* CTA BUTTONS */
+.bottom-cta button{
+flex:1;
+margin:0 6px;
+padding:12px 0;
+border:none;
+border-radius:25px;
+font-size:14px;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+/* CALL BUTTON */
+.bottom-call{
+background:#ffd700;
+color:#000;
+box-shadow:0 0 15px rgba(255,215,0,0.6);
+animation:blinkGlow 1.2s infinite;
+}
+
+/* WHATSAPP BUTTON */
+.bottom-wa{
+background:#25D366;
+color:#fff;
+box-shadow:0 0 15px rgba(37,211,102,0.6);
+animation:blinkGlow 1.2s infinite 0.6s;
+}
+
+.bottom-cta button:hover{
+transform:scale(1.05);
+}
+
+/* ANIMATIONS */
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+@keyframes wave{
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
+}
+
+@keyframes float{
+0%{transform:translateY(0);opacity:0;}
+50%{opacity:0.7;}
+100%{transform:translateY(-600px);opacity:0;}
+}
+
+@keyframes glowPulse{
+0%,100%{text-shadow:0 0 10px rgba(255,215,0,0.6);}
+50%{text-shadow:0 0 25px rgba(255,215,0,1);}
+}
+
+@keyframes shimmer{
+0%{background-position:0%;}
+100%{background-position:200%;}
+}
+
+@keyframes blinkGlow{
+0%{
+opacity:1;
+transform:scale(1);
+box-shadow:0 0 10px rgba(255,255,255,0.3);
+}
+
+50%{
+opacity:0.6;
+transform:scale(1.05);
+box-shadow:0 0 25px rgba(255,215,0,0.9);
+}
+
+100%{
+opacity:1;
+transform:scale(1);
+box-shadow:0 0 10px rgba(255,255,255,0.3);
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="frame">
+
+<div class="bg"></div>
+
+<!-- PARTICLES -->
+<script>
+for(let i=0;i<40;i++){
+document.write(`<div class="particle" style="
+left:${Math.random()*100}%;
+bottom:${Math.random()*100}%;
+animation-delay:${Math.random()*6}s;
+"></div>`);
+}
+</script>
+
+<!-- TOP NAME -->
+<div class="nameplate">
+<h1>Adv. Poonam Bagade</h1>
+<p>Expert Legal Advisor</p>
+</div>
+
+<!-- SCENES -->
+
+<div class="scene active" id="s1">
+<h2 class="shimmer">Bagade Legal Associates</h2>
+<p>Your Trusted Legal Partner</p>
+<p id="dateBox"></p>
+</div>
+
+<div class="scene" id="s2">
+<h2 class="glow" id="focusTitle"></h2>
+<p id="focusLine"></p>
+</div>
+
+<div class="scene" id="s3">
+<p class="tip" id="tipBox"></p>
+</div>
+
+<div class="scene" id="s4">
+<p id="servicesBox"></p>
+</div>
+
+<div class="scene" id="s5">
+<h2 class="glow">Consult Today</h2>
+<p>Call or Chat for Immediate Legal Help</p>
+</div>
+
+<div class="footer">
+Bagade Legal Associates | Pune
+</div>
+
+<!-- FIXED CTA BAR -->
+<div class="bottom-cta">
+
+<button class="bottom-call" onclick="callNow()">
+📞 Call Now
+</button>
+
+<button class="bottom-wa" onclick="whatsappChat()">
+💬 Chat Now
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* DATE */
+function formatDate(d){
+const m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+return d.getDate().toString().padStart(2,"0")+"-"+m[d.getMonth()]+"-"+d.getFullYear();
+}
+
+/* DATA */
+const data={
+
+Monday:{title:"Property Law",line:"Securing your property",tip:"Verify ownership before purchase.",main:"Registration | Agreements | Disputes"},
+
+Tuesday:{title:"Family & Divorce Law",line:"Protecting your dignity",tip:"Keep income proofs ready.",main:"Divorce | Maintenance | Custody"},
+
+Wednesday:{title:"Criminal Law",line:"Strong legal defense",tip:"Consult lawyer before statement.",main:"FIR | Defense | Support"},
+
+Thursday:{title:"Legal Drafting",line:"Strong documentation",tip:"Use proper notice format.",main:"Notices | Agreements | Affidavits"},
+
+Friday:{title:"Cheque Bounce",line:"Recover payments",tip:"Keep transaction records.",main:"Cheque | Recovery | Disputes"},
+
+Saturday:{title:"Bail & Emergency",line:"Immediate support",tip:"Contact lawyer immediately.",main:"Bail | Police | Urgent"},
+
+Sunday:{title:"Legal Awareness",line:"Know your rights",tip:"Legal knowledge saves you.",main:"Guidance | Awareness | Consult"}
+
+};
+
+
+/* LOAD DATA */
+function loadData(){
+
+const d=new Date();
+const day=d.toLocaleDateString("en-US",{weekday:"long"});
+
+document.getElementById("dateBox").innerText=formatDate(d);
+
+const t=data[day];
+
+document.getElementById("focusTitle").innerText=t.title;
+document.getElementById("focusLine").innerText=t.line;
+document.getElementById("tipBox").innerText=t.tip;
+document.getElementById("servicesBox").innerText=t.main;
+
+}
+
+/* SCENE PLAYER */
+const scenes=document.querySelectorAll(".scene");
+let i=0;
+
+function play(){
+
+scenes.forEach(s=>s.classList.remove("active"));
+scenes[i].classList.add("active");
+
+i=(i+1)%scenes.length;
+
+setTimeout(play,2800);
+
+}
+
+/* ACTIONS */
+function callNow(){
+location.href="tel:9890494976";
+}
+
+function whatsappChat(){
+
+const num="919890494976";
+const msg="Hello, I need legal consultation.";
+
+window.open("https://wa.me/"+num+"?text="+encodeURIComponent(msg));
+
+}
+
+/* START */
+loadData();
+setTimeout(play,2000);
+
+</script>
+
+</body>
+</html>
