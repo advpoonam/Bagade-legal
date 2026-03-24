@@ -1,572 +1,767 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Legal Associates | Adv. Poonam Ingavale | Pune Office</title>
-  <!-- Google Fonts & Font Awesome 6 -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legal Associates – Adv. Poonam Ingavale</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cinzel:wght@400;700;900&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --gold-dark: #9a7a30;
+    --deep: #0a0a0f;
+    --dark: #10101a;
+    --panel: #14141f;
+    --text: #e8e0d0;
+    --muted: #9a9080;
+    --white: #f8f4ec;
+  }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: radial-gradient(circle at 10% 30%, #f5f7fc 0%, #e9eef4 100%);
-      color: #1a2c3e;
-      line-height: 1.5;
-      min-height: 100vh;
-    }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* glassmorphism & glossy effects */
-    .glass-card {
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(12px);
-      border-radius: 2.5rem;
-      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(255,255,255,0.5) inset;
-      border: 1px solid rgba(255,255,255,0.7);
-      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    }
+  html { scroll-behavior: smooth; }
 
-    .glass-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 35px 50px -18px rgba(0, 0, 0, 0.25);
-      border-color: rgba(255,215,0,0.3);
-    }
+  body {
+    background: var(--deep);
+    color: var(--text);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
 
-    .container {
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 1.8rem 1.5rem 2rem;
-    }
+  /* ── ANIMATED BACKGROUND ── */
+  .bg-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .bg-canvas::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(201,168,76,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 80% 90%, rgba(201,168,76,0.05) 0%, transparent 60%),
+      radial-gradient(ellipse 100% 100% at 50% 50%, rgba(20,20,40,1) 0%, rgba(10,10,15,1) 100%);
+    animation: bgPulse 8s ease-in-out infinite alternate;
+  }
+  @keyframes bgPulse {
+    0%   { opacity: 0.8; }
+    100% { opacity: 1; }
+  }
 
-    /* animated shine overlay */
-    .shiny-surface {
-      position: relative;
-      overflow: hidden;
-    }
-    .shiny-surface::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -60%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(115deg, rgba(255,255,255,0) 10%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 90%);
-      transform: rotate(25deg);
-      animation: glossyMove 8s infinite linear;
-      pointer-events: none;
-    }
+  .scales-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.03;
+  }
+  .scales-bg svg { width: 70vmin; height: 70vmin; }
 
-    @keyframes glossyMove {
-      0% { transform: translateX(-100%) rotate(25deg); }
-      100% { transform: translateX(100%) rotate(25deg); }
-    }
+  /* ── WRAPPER ── */
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
 
-    /* keyframe animations */
-    @keyframes fadeSlideUp {
-      0% { opacity: 0; transform: translateY(35px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
+  /* ── TOP ORNAMENT ── */
+  .top-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0 20px;
+    gap: 16px;
+    animation: fadeDown 1s ease both;
+  }
+  .ornament-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .ornament-icon { color: var(--gold); font-size: 20px; animation: rotateSlow 20s linear infinite; display: inline-block; }
 
-    @keyframes gentleGlow {
-      0% { box-shadow: 0 10px 25px -8px rgba(0,0,0,0.1), 0 0 0 0 rgba(212, 175, 55, 0.3); }
-      50% { box-shadow: 0 18px 35px -10px rgba(0,0,0,0.15), 0 0 0 5px rgba(212, 175, 55, 0.2); }
-      100% { box-shadow: 0 10px 25px -8px rgba(0,0,0,0.1), 0 0 0 0 rgba(212, 175, 55, 0); }
-    }
+  @keyframes rotateSlow { to { transform: rotate(360deg); } }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeUp   { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn   { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes scaleIn  { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
 
-    @keyframes floatSoft {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-6px); }
-      100% { transform: translateY(0px); }
-    }
+  /* ── HEADER ── */
+  .firm-name {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.2rem, 7vw, 4.2rem);
+    font-weight: 900;
+    text-align: center;
+    letter-spacing: 0.06em;
+    line-height: 1.1;
+    color: var(--white);
+    text-shadow: 0 0 60px rgba(201,168,76,0.25);
+    animation: fadeDown 1s 0.2s ease both;
+  }
+  .firm-name span { color: var(--gold); }
 
-    @keyframes borderPulse {
-      0% { border-color: rgba(212, 175, 55, 0.2); }
-      100% { border-color: rgba(212, 175, 55, 0.8); }
-    }
+  .practice-areas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px 6px;
+    margin-top: 18px;
+    animation: fadeDown 1s 0.4s ease both;
+  }
+  .practice-chip {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.35);
+    padding: 5px 14px;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .practice-chip::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(201,168,76,0.07);
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+  }
+  .practice-chip:hover::before { transform: translateX(0); }
+  .practice-chip:hover { border-color: var(--gold); color: var(--gold-light); }
+  .dot { color: var(--gold-dark); font-size: 0.5rem; }
 
-    /* business name with gloss */
-    .business-name {
-      font-size: 3rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #1F3A6B, #2B4A7A, #C5A028, #1F3A6B);
-      background-size: 300% 300%;
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      letter-spacing: -0.02em;
-      animation: fadeSlideUp 0.8s ease, gradientFlow 6s ease infinite;
-    }
+  /* ── TAGLINE ── */
+  .tagline-block {
+    text-align: center;
+    margin-top: 28px;
+    animation: fadeDown 1s 0.6s ease both;
+  }
+  .tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 3.5vw, 1.55rem);
+    color: var(--muted);
+    letter-spacing: 0.03em;
+  }
+  .tagline-line {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.5) 30%, rgba(201,168,76,0.8) 50%, rgba(201,168,76,0.5) 70%, transparent 100%);
+    margin-top: 14px;
+    position: relative;
+  }
+  .tagline-line::after {
+    content: '⚖';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    font-size: 1rem;
+    background: var(--deep);
+    padding: 0 10px;
+  }
 
-    @keyframes gradientFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+  /* ── DAILY REFRESH CARD ── */
+  .daily-card {
+    margin: 44px 0 36px;
+    background: linear-gradient(135deg, rgba(201,168,76,0.06), rgba(201,168,76,0.02));
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    padding: 28px 32px;
+    position: relative;
+    overflow: hidden;
+    animation: scaleIn 1s 0.8s ease both;
+  }
+  .daily-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: linear-gradient(to bottom, var(--gold), var(--gold-dark));
+  }
+  .daily-card-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .daily-card-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(201,168,76,0.2);
+  }
+  .daily-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.65;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.8s, transform 0.8s;
+  }
+  .daily-quote.visible { opacity: 1; transform: translateY(0); }
+  .daily-quote-author {
+    margin-top: 10px;
+    font-size: 0.78rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    opacity: 0;
+    transition: opacity 0.8s 0.3s;
+  }
+  .daily-quote-author.visible { opacity: 1; }
 
-    /* practice pills glossy */
-    .pill {
-      background: linear-gradient(135deg, rgba(31, 58, 107, 0.12), rgba(197, 160, 40, 0.08));
-      backdrop-filter: blur(4px);
-      padding: 0.6rem 1.5rem;
-      border-radius: 60px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: all 0.3s;
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      color: #1F3A6B;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .pill i {
-      font-size: 1rem;
-      color: #C5A028;
-    }
-    .pill:hover {
-      background: linear-gradient(135deg, #1F3A6B, #2B4A7A);
-      color: white;
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 12px 20px -12px rgba(0,0,0,0.2);
-      border-color: #C5A028;
-    }
-    .pill:hover i {
-      color: #FFE5A3;
-    }
+  /* ── ADVOCATE CARD ── */
+  .advocate-card {
+    background: var(--panel);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 4px;
+    padding: 36px 36px 32px;
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    margin-bottom: 36px;
+    animation: fadeUp 1s 1s ease both;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.4s;
+  }
+  .advocate-card:hover { border-color: rgba(201,168,76,0.4); }
+  .advocate-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 120px; height: 120px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08), transparent 70%);
+    pointer-events: none;
+  }
 
-    .practice-areas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin: 1.5rem 0 1rem;
-    }
+  .avatar {
+    flex-shrink: 0;
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    background: linear-gradient(135deg, #1e1e2e, #2a2a3e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    color: var(--gold);
+    position: relative;
+    box-shadow: 0 0 30px rgba(201,168,76,0.15);
+    overflow: hidden;
+  }
+  .avatar img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+  }
+  .avatar::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.2);
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.06); opacity: 0.2; }
+  }
 
-    .tagline {
-      font-size: 1.45rem;
-      font-weight: 500;
-      color: #2c3e50;
-      letter-spacing: -0.2px;
-      margin-top: 0.8rem;
-    }
+  .adv-info { flex: 1; }
+  .adv-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+  }
+  .adv-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 6px;
+    font-weight: 500;
+  }
+  .adv-mobile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    font-size: 1.05rem;
+    color: var(--muted);
+  }
+  .adv-mobile strong { color: var(--text); font-weight: 400; letter-spacing: 0.05em; }
 
-    .hr-gold {
-      width: 110px;
-      height: 4px;
-      background: linear-gradient(90deg, #C5A028, #E4C580, #C5A028);
-      border-radius: 4px;
-      margin: 0.8rem 0 1.5rem 0;
-      box-shadow: 0 0 6px rgba(197,160,40,0.5);
-    }
+  /* ── BUTTONS ── */
+  .btn-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    animation: fadeUp 1s 1.2s ease both;
+    margin-bottom: 44px;
+  }
 
-    /* profile section */
-    .profile-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2.2rem;
-      align-items: center;
-      margin: 1.8rem 0 1rem;
-    }
-    .avatar-frame {
-      background: linear-gradient(145deg, #fff, #f0e9da);
-      border-radius: 50%;
-      padding: 6px;
-      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.2);
-      transition: 0.3s;
-    }
-    .avatar-icon {
-      width: 160px;
-      height: 160px;
-      background: linear-gradient(145deg, #fef9e6, #f1ebdd);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      color: #1F3A6B;
-      font-size: 5rem;
-      transition: all 0.3s;
-      border: 2px solid rgba(197,160,40,0.5);
-    }
-    .avatar-icon i {
-      filter: drop-shadow(2px 6px 12px rgba(0,0,0,0.1));
-    }
-    .avatar-frame:hover {
-      transform: scale(1.02);
-      animation: floatSoft 2s infinite ease;
-    }
-    .adv-details h2 {
-      font-size: 2.4rem;
-      font-weight: 800;
-      background: linear-gradient(125deg, #1F3A6B, #2F5A8C);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-    .badge-exp {
-      background: rgba(197,160,40,0.18);
-      padding: 5px 14px;
-      border-radius: 40px;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-    .office-pune {
-      background: rgba(31,58,107,0.08);
-      border-radius: 60px;
-      padding: 6px 16px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 500;
-    }
+  .btn {
+    flex: 1;
+    min-width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 18px 28px;
+    border-radius: 3px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.08);
+    transform: translateX(-110%) skewX(-15deg);
+    transition: transform 0.4s;
+  }
+  .btn:hover::before { transform: translateX(110%) skewX(-15deg); }
+  .btn:hover { transform: translateY(-3px); }
+  .btn:active { transform: translateY(0); }
 
-    /* glossy buttons */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 0.9rem 2.2rem;
-      border-radius: 60px;
-      font-weight: 700;
-      font-size: 1.05rem;
-      transition: all 0.25s ease;
-      text-decoration: none;
-      position: relative;
-      overflow: hidden;
-      border: none;
-      cursor: pointer;
-    }
-    .btn-call {
-      background: linear-gradient(105deg, #0f2b3d, #1e4a6e);
-      color: white;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
-    }
-    .btn-wa {
-      background: linear-gradient(105deg, #25D366, #128C7E);
-      color: white;
-      box-shadow: 0 8px 18px rgba(37,211,102,0.25);
-    }
-    .btn::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -60%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(115deg, rgba(255,255,255,0) 10%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 90%);
-      transform: rotate(25deg);
-      transition: left 0.6s;
-    }
-    .btn:hover::after {
-      left: 100%;
-    }
-    .btn:hover {
-      transform: translateY(-3px) scale(1.02);
-      filter: brightness(1.05);
-    }
+  .btn-call {
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    color: var(--deep);
+    box-shadow: 0 8px 30px rgba(201,168,76,0.25);
+  }
+  .btn-call:hover { box-shadow: 0 14px 40px rgba(201,168,76,0.4); }
 
-    /* daily creative block glossy */
-    .creative-daily {
-      background: linear-gradient(125deg, #ffffff, #fef8ed);
-      border-radius: 2rem;
-      padding: 1.6rem 2rem;
-      margin-top: 2rem;
-      border-left: 8px solid #C5A028;
-      transition: all 0.3s;
-      animation: gentleGlow 4s infinite ease-in-out;
-      position: relative;
-      backdrop-filter: blur(4px);
-    }
-    .creative-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      font-size: 1.3rem;
-      color: #C5A028;
-    }
-    .daily-quote {
-      font-size: 1.15rem;
-      font-weight: 500;
-      margin-top: 12px;
-      color: #2d3e5a;
-    }
+  .btn-whatsapp {
+    background: linear-gradient(135deg, #075e54, #25d366);
+    color: #fff;
+    box-shadow: 0 8px 30px rgba(37,211,102,0.2);
+  }
+  .btn-whatsapp:hover { box-shadow: 0 14px 40px rgba(37,211,102,0.35); }
 
-    /* location card */
-    .location-card {
-      background: rgba(255,255,240,0.7);
-      backdrop-filter: blur(8px);
-      border-radius: 1.5rem;
-      padding: 0.8rem 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 1.8rem;
-      border: 1px solid rgba(197,160,40,0.4);
-    }
+  .btn-icon { font-size: 1.2rem; flex-shrink: 0; }
 
-    footer {
-      text-align: center;
-      margin-top: 3rem;
-      font-size: 0.85rem;
-      color: #4a5b74;
-      padding-top: 1.2rem;
-      border-top: 1px solid rgba(0,0,0,0.08);
-    }
+  /* ── SERVICES SECTION ── */
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: fadeIn 1s 1.3s ease both;
+  }
+  .section-label::before, .section-label::after {
+    content: '';
+    height: 1px;
+    background: rgba(201,168,76,0.25);
+  }
+  .section-label::before { width: 20px; }
+  .section-label::after { flex: 1; }
 
-    @media (max-width: 700px) {
-      .container { padding: 1rem; }
-      .business-name { font-size: 2.2rem; }
-      .profile-wrapper { flex-direction: column; text-align: center; }
-      .adv-details h2 { font-size: 1.9rem; }
-      .btn { padding: 0.7rem 1.5rem; font-size: 0.95rem; }
-      .avatar-icon { width: 130px; height: 130px; font-size: 3.8rem; }
-      .creative-daily { padding: 1.2rem; }
-      .tagline { font-size: 1.2rem; }
-    }
-  </style>
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 14px;
+    margin-bottom: 44px;
+    animation: fadeUp 1s 1.4s ease both;
+  }
+
+  .service-card {
+    background: var(--panel);
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 4px;
+    padding: 26px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: default;
+  }
+  .service-card:hover {
+    border-color: rgba(201,168,76,0.4);
+    transform: translateY(-4px);
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-icon {
+    font-size: 1.8rem;
+    margin-bottom: 14px;
+    display: block;
+    filter: grayscale(0.3);
+    transition: filter 0.3s, transform 0.3s;
+  }
+  .service-card:hover .service-icon { filter: grayscale(0); transform: scale(1.1); }
+
+  .service-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .service-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── WHY CHOOSE US ── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 44px;
+    animation: fadeUp 1s 1.5s ease both;
+  }
+  .why-item {
+    text-align: center;
+    padding: 22px 16px;
+    border: 1px solid rgba(201,168,76,0.08);
+    border-radius: 4px;
+    background: rgba(201,168,76,0.03);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .why-item:hover {
+    background: rgba(201,168,76,0.07);
+    border-color: rgba(201,168,76,0.25);
+  }
+  .why-num {
+    font-family: 'Cinzel', serif;
+    font-size: 1.7rem;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .why-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 28px 0 0;
+    border-top: 1px solid rgba(201,168,76,0.12);
+    animation: fadeIn 1s 1.6s ease both;
+  }
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--gold);
+  }
+  .footer-copy {
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 6px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── FLOATING RING ANIMATION ── */
+  .float-ring {
+    position: fixed;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.06);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .ring1 { width: 400px; height: 400px; top: -100px; right: -100px; animation: floatRing 12s ease-in-out infinite; }
+  .ring2 { width: 300px; height: 300px; bottom: -80px; left: -80px; animation: floatRing 10s 3s ease-in-out infinite reverse; }
+  .ring3 { width: 200px; height: 200px; top: 40%; left: 5%; animation: floatRing 15s 6s ease-in-out infinite; }
+  @keyframes floatRing {
+    0%, 100% { transform: translate(0,0) rotate(0deg); }
+    33% { transform: translate(10px, -15px) rotate(15deg); }
+    66% { transform: translate(-8px, 10px) rotate(-10deg); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 580px) {
+    .advocate-card { flex-direction: column; text-align: center; gap: 20px; padding: 28px 24px; }
+    .adv-mobile { justify-content: center; }
+    .btn-row { flex-direction: column; }
+    .daily-card { padding: 22px 20px; }
+  }
+
+  /* Particle dots */
+  .particle {
+    position: fixed;
+    width: 2px; height: 2px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+    animation: particleFly linear infinite;
+  }
+  @keyframes particleFly {
+    0% { opacity: 0; transform: translateY(0) scale(0); }
+    10% { opacity: 0.6; transform: scale(1); }
+    90% { opacity: 0.1; }
+    100% { opacity: 0; transform: translateY(-100vh) scale(0.5); }
+  }
+</style>
 </head>
 <body>
-<div class="container">
-  <div class="glass-card shiny-surface" style="padding: 2rem 2rem;">
-    <!-- Business name -->
-    <div>
-      <span class="business-name"><i class="fas fa-gavel" style="background: none; -webkit-background-clip: unset; color: #C5A028; margin-right: 8px;"></i> Legal Associates</span>
-    </div>
 
-    <!-- Practice Areas -->
-    <div class="practice-areas">
-      <span class="pill"><i class="fas fa-building"></i> Property Lawyer</span>
-      <span class="pill"><i class="fas fa-heart"></i> Family Lawyer</span>
-      <span class="pill"><i class="fas fa-handcuffs"></i> Criminal Lawyer</span>
-    </div>
+<!-- Background elements -->
+<div class="bg-canvas"></div>
+<div class="float-ring ring1"></div>
+<div class="float-ring ring2"></div>
+<div class="float-ring ring3"></div>
+<div class="scales-bg">
+  <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="95" y="10" width="10" height="120" fill="#c9a84c"/>
+    <rect x="30" y="30" width="140" height="8" rx="4" fill="#c9a84c"/>
+    <line x1="45" y1="38" x2="45" y2="90" stroke="#c9a84c" stroke-width="4"/>
+    <line x1="155" y1="38" x2="155" y2="110" stroke="#c9a84c" stroke-width="4"/>
+    <ellipse cx="45" cy="105" rx="35" ry="15" fill="#c9a84c"/>
+    <ellipse cx="155" cy="125" rx="35" ry="15" fill="#c9a84c"/>
+    <rect x="80" y="130" width="40" height="10" rx="2" fill="#c9a84c"/>
+    <rect x="85" y="140" width="30" height="50" rx="3" fill="#c9a84c"/>
+    <rect x="70" y="188" width="60" height="8" rx="4" fill="#c9a84c"/>
+  </svg>
+</div>
 
-    <!-- Tagline + Horizontal line -->
-    <div class="tagline">
-      <i class="fas fa-quote-left" style="color:#C5A028;"></i> Your trusted legal partner
-    </div>
-    <div class="hr-gold"></div>
+<div class="wrapper">
+  <!-- Top Ornament -->
+  <div class="top-ornament">
+    <div class="ornament-line"></div>
+    <span class="ornament-icon">⚖</span>
+    <div class="ornament-line"></div>
+  </div>
 
-    <!-- Advocate Profile -->
-    <div class="profile-wrapper">
-      <div class="avatar-frame">
-        <div class="avatar-icon">
-          <i class="fas fa-user-graduate"></i>
-        </div>
+  <!-- Firm Name -->
+  <h1 class="firm-name"><span>Legal</span> Associates</h1>
+
+  <!-- Practice Areas -->
+  <div class="practice-areas">
+    <span class="practice-chip">Property Lawyer</span>
+    <span class="dot">●</span>
+    <span class="practice-chip">Family Lawyer</span>
+    <span class="dot">●</span>
+    <span class="practice-chip">Criminal Lawyer</span>
+  </div>
+
+  <!-- Tagline -->
+  <div class="tagline-block">
+    <p class="tagline">Your Trusted Legal Partner</p>
+    <div class="tagline-line"></div>
+  </div>
+
+  <!-- Daily Quote Card -->
+  <div class="daily-card">
+    <div class="daily-card-label">⭐ Legal Wisdom of the Day</div>
+    <div class="daily-quote" id="dailyQuote"></div>
+    <div class="daily-quote-author" id="dailyAuthor"></div>
+  </div>
+
+  <!-- Advocate Card -->
+  <div class="advocate-card">
+    <div class="avatar" id="avatarEl">
+      <img src="photo.jpg" alt="Adv. Poonam Ingavale" onerror="this.style.display='none';document.getElementById('avatarFallback').style.display='flex';" />
+      <span id="avatarFallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:2rem;color:var(--gold);">PI</span>
+    </div>
+    <div class="adv-info">
+      <div class="adv-name">Adv. Poonam Ingavale</div>
+      <div class="adv-title">Advocate &amp; Legal Consultant</div>
+      <div class="adv-mobile">
+        <span>📞</span>
+        <strong>+91 98904 94976</strong>
       </div>
-      <div class="adv-details">
-        <h2>Adv. Poonam Ingavale</h2>
-        <p style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 8px;">
-          <i class="fas fa-phone-alt" style="color:#1F3A6B;"></i> <strong>+91 9890494976</strong>
-          <span class="badge-exp"><i class="fas fa-award"></i> 14+ Years Experience</span>
-        </p>
-        <p><i class="fas fa-map-marker-alt" style="color:#C5A028;"></i> <strong>Pune Office:</strong> 105, Central Avenue, Camp, Pune - 411001</p>
-        <p><i class="fas fa-clock"></i> Mon-Sat: 10:00 AM – 7:00 PM</p>
-      </div>
-    </div>
-
-    <!-- Call & WhatsApp action buttons -->
-    <div class="action-buttons" style="display: flex; flex-wrap: wrap; gap: 1.3rem; margin: 1.8rem 0 0.8rem;">
-      <a href="tel:+919890494976" class="btn btn-call">
-        <i class="fas fa-phone-alt fa-fw"></i> Call Now
-      </a>
-      <a href="https://wa.me/919890494976?text=Hello%20Adv.%20Poonam%20Ingavale%2C%20I%20would%20like%20to%20discuss%20my%20legal%20matter.%20I%20am%20from%20Pune%2C%20please%20guide%20me." 
-         target="_blank" rel="noopener noreferrer" class="btn btn-wa">
-        <i class="fab fa-whatsapp fa-fw"></i> WhatsApp Message
-      </a>
-    </div>
-
-    <!-- Pune Office extra glossy info card -->
-    <div class="location-card">
-      <div><i class="fas fa-map-pin" style="color:#C5A028; font-size: 1.3rem;"></i> <strong>📍 Pune Office (HQ)</strong> — Fully accessible | Free initial consultation</div>
-      <div><i class="fas fa-calendar-alt"></i> Prior appointment recommended</div>
-    </div>
-
-    <!-- DAILY CREATIVE REFRESH BLOCK: Automatically changes daily with glossy effect -->
-    <div class="creative-daily" id="dailyInspireBlock">
-      <div class="creative-header">
-        <i class="fas fa-sun"></i>
-        <span>⚡ DAILY LEGAL INSIGHT · FRESH EVERY DAY</span>
-        <i class="fas fa-sync-alt" style="font-size: 1rem;"></i>
-      </div>
-      <div class="daily-quote" id="dailyQuoteText">
-        <i class="fas fa-spinner fa-pulse"></i> Loading daily wisdom...
-      </div>
-      <div class="daily-ref" id="dailyDateRef" style="margin-top: 12px; font-size: 0.8rem; opacity: 0.7;"></div>
-    </div>
-    <!-- extra gloss animated line -->
-    <div style="margin-top: 1rem; text-align: right;">
-      <small style="background: linear-gradient(90deg, #b8860b, #d4af37); background-clip: text; -webkit-background-clip: text; color: transparent;">⚖️ Excellence · Integrity · Empathy</small>
     </div>
   </div>
-  <footer>
-    <i class="fas fa-gavel"></i> Legal Associates — Pune based practice | Serving clients across Maharashtra <br>
-    © 2025 Adv. Poonam Ingavale | All rights reserved
-  </footer>
+
+  <!-- Action Buttons -->
+  <div class="btn-row">
+    <a href="tel:+919890494976" class="btn btn-call">
+      <span class="btn-icon">📞</span>
+      <span>Call Now</span>
+    </a>
+    <a href="https://wa.me/919890494976?text=Hello%20Adv.%20Poonam%20Ingavale%2C%20I%20need%20legal%20consultation." target="_blank" class="btn btn-whatsapp">
+      <span class="btn-icon">💬</span>
+      <span>WhatsApp Us</span>
+    </a>
+  </div>
+
+  <!-- Services -->
+  <div class="section-label">Our Practice Areas</div>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon">🏠</span>
+      <div class="service-title">Property Law</div>
+      <div class="service-desc">Disputes, registrations, title verifications, RERA matters &amp; land acquisition cases handled with expertise.</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">👨‍👩‍👧</span>
+      <div class="service-title">Family Law</div>
+      <div class="service-desc">Divorce, custody, maintenance, adoption &amp; matrimonial disputes resolved with compassion and legal precision.</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">⚖️</span>
+      <div class="service-title">Criminal Law</div>
+      <div class="service-desc">Bail applications, criminal trials, FIR matters &amp; defence representation across all courts of law.</div>
+    </div>
+  </div>
+
+  <!-- Why Choose -->
+  <div class="section-label">Why Choose Us</div>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="why-num">5+</div>
+      <div class="why-label">Years Experience</div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">All</div>
+      <div class="why-label">Legal Matters</div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">24/7</div>
+      <div class="why-label">Consultation</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-name">Legal Associates – Adv. Poonam Ingavale</div>
+    <div class="footer-copy">© 2026 Legal Associates. All rights reserved. | Advocate &amp; Legal Consultant</div>
+  </div>
 </div>
 
 <script>
-  // --------------------------------------------------------------
-  // CREATIVE DAILY REFRESH IDEA: changes content automatically each day.
-  // Contains large pool of legal & advocacy insights + location specific touch (Pune)
-  // Rotates deterministically based on date, ensuring new content daily.
-  // Also includes additional random but day-fixed element to feel fresh.
-  // --------------------------------------------------------------
-  
-  const wisdomCore = [
-    "Justice is not just about punishment — it's about restoring balance.",
-    "Your family's future deserves expert family law guidance.",
-    "Property disputes? We ensure title verification & swift resolution.",
-    "In criminal law, presumption of innocence is our cornerstone.",
-    "The best settlement is one that avoids courtroom stress.",
-    "“Where there is righteousness in the heart, there is beauty in character.”",
-    "Legal Associates Pune: Local expertise, global standards.",
-    "Adv. Poonam Ingavale: Recognized for strategic litigation & compassion.",
-    "Documentation is power — we protect your interests with airtight contracts.",
-    "Mediation saves time, money, and relationships — ask us how.",
-    "Every client receives personalized attention, not a cookie-cutter approach.",
-    "Pune's trusted legal partner for property, family & criminal matters.",
-    "We turn legal complexities into clear pathways.",
-    "Your rights defended fearlessly, your voice heard in court.",
-    "“The law is a shield, not just a sword.”",
-    "Need urgent legal advice? Same-day consultations available.",
-    "Strong negotiation skills + courtroom experience = winning outcomes.",
-    "Family law requires empathy — we stand with you during transitions.",
-    "Criminal defense: protecting liberty with unwavering ethics.",
-    "We serve Pune & beyond — digital consultations also available."
+  /* ── DAILY ROTATING QUOTES ── */
+  const quotes = [
+    { text: "Justice delayed is justice denied.", author: "— William E. Gladstone" },
+    { text: "The good lawyer is not the man who has an eye to every side and angle of contingency, and qualifies all his qualifications, but who throws himself on your part so heartily, that he can get you out of a scrape.", author: "— Ralph Waldo Emerson" },
+    { text: "Injustice anywhere is a threat to justice everywhere.", author: "— Martin Luther King Jr." },
+    { text: "The law is reason, free from passion.", author: "— Aristotle" },
+    { text: "It is not what a lawyer tells me I may do; but what humanity, reason, and justice tells me I ought to do.", author: "— Edmund Burke" },
+    { text: "The first thing we do, let's kill all the lawyers — because only lawyers can protect your rights.", author: "— William Shakespeare (interpreted)" },
+    { text: "In law, nothing is certain but the expense.", author: "— Samuel Butler" },
+    { text: "The measure of a country's greatness is its ability to retain compassion in time of crisis.", author: "— Thurgood Marshall" },
+    { text: "Law is the embodiment of the moral sentiment of the people.", author: "— William Blackstone" },
+    { text: "A lawyer without books would be like a workman without tools.", author: "— Thomas Jefferson" },
+    { text: "The laws are the sovereigns of sovereigns.", author: "— Louis XIV" },
+    { text: "Where law ends, tyranny begins.", author: "— William Pitt" },
+    { text: "The strength of a nation derives from the integrity of the home.", author: "— Confucius" },
+    { text: "Knowledge of the law is like a deep well — the more you draw from it, the clearer it becomes.", author: "— Legal Proverb" },
+    { text: "A good conscience is the best law.", author: "— Henry George Bohn" },
+    { text: "Truth is the most powerful argument.", author: "— Celsus" },
+    { text: "The law must be stable and yet it cannot stand still.", author: "— Roscoe Pound" },
+    { text: "Equity regards as done what ought to be done.", author: "— Legal Maxim" },
+    { text: "Right is right, even if everyone is against it, and wrong is wrong, even if everyone is for it.", author: "— William Penn" },
+    { text: "The purpose of law is to prevent the strong from always having their way.", author: "— Ovid" },
+    { text: "Justice is the constant and perpetual will to give every man his due.", author: "— Domitius Ulpianus" },
+    { text: "Laws are spider webs through which the big flies pass and the little ones get caught.", author: "— Honoré de Balzac" },
+    { text: "Courage is the form of every virtue at its testing point.", author: "— C.S. Lewis" },
+    { text: "The sword of justice has no scabbard.", author: "— Joseph de Maistre" },
+    { text: "In the halls of justice, the only justice is in the halls.", author: "— Lenny Bruce" },
+    { text: "Every great lawyer was once a student who refused to give up.", author: "— Legal Wisdom" },
+    { text: "One who breaks an unjust law must do so openly, lovingly.", author: "— Martin Luther King Jr." },
+    { text: "No man is above the law and no man is below it.", author: "— Theodore Roosevelt" },
+    { text: "The life of the law has not been logic; it has been experience.", author: "— Oliver Wendell Holmes Jr." },
+    { text: "Equity will not suffer a wrong to be without a remedy.", author: "— Legal Maxim" },
+    { text: "Justice is the ligament which holds civilised beings and civilised nations together.", author: "— Daniel Webster" },
   ];
-  
-  const puneSpecific = [
-    "🏛️ Pune Bench expertise: Well-versed with local courts & procedures.",
-    "📍 Camp office location — easily accessible from all parts of Pune.",
-    "🤝 Marathi, Hindi, English consultations available.",
-    "🚗 Free parking & wheelchair accessible office in Pune.",
-    "📜 Known for excellence in Pune legal circles since 2010."
-  ];
-  
-  // get deterministic daily index
-  function getDailyIndex(arrLength) {
-    const today = new Date();
-    const daySeed = today.getUTCFullYear() * 366 + today.getUTCMonth() * 32 + today.getUTCDate();
-    return daySeed % arrLength;
-  }
-  
-  function getSecondaryDailyMix() {
-    const today = new Date();
-    const seed = today.getUTCFullYear() + (today.getUTCMonth() + 1) * 100 + today.getUTCDate();
-    let hash = 0;
-    const str = seed.toString();
-    for(let i=0; i<str.length; i++) hash = ((hash << 5) - hash) + str.charCodeAt(i);
-    const idx = Math.abs(hash) % (wisdomCore.length + puneSpecific.length);
-    const megaPool = [...wisdomCore, ...puneSpecific];
-    return megaPool[idx % megaPool.length];
-  }
-  
-  function formatFancyDate() {
+
+  function getDayIndex() {
     const now = new Date();
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    return now.toLocaleDateString('en-IN', options);
+    const start = new Date(now.getFullYear(), 0, 0);
+    const diff = now - start;
+    const oneDay = 1000 * 60 * 60 * 24;
+    const dayOfYear = Math.floor(diff / oneDay);
+    return dayOfYear % quotes.length;
   }
-  
-  function updateDailyCreative() {
-    const quoteElem = document.getElementById('dailyQuoteText');
-    const dateElem = document.getElementById('dailyDateRef');
-    if(!quoteElem) return;
-    
-    const primaryIdx = getDailyIndex(wisdomCore.length);
-    const primaryMsg = wisdomCore[primaryIdx];
-    const secondaryMsg = getSecondaryDailyMix();
-    
-    // additional refreshing sparkle: small legal tip of the day
-    const tipExtra = secondaryMsg.includes("Pune") ? "✨ Pune special: " + secondaryMsg : secondaryMsg;
-    
-    const finalHtml = `<i class="fas fa-lightbulb" style="color:#C5A028; margin-right: 10px;"></i> ${primaryMsg}<br><span style="font-size:0.95rem; display:inline-block; margin-top: 10px; opacity:0.9;">✨ ${tipExtra}</span>`;
-    
-    // subtle fade transition
-    quoteElem.style.opacity = '0';
+
+  function loadDailyQuote() {
+    const q = quotes[getDayIndex()];
+    const qEl = document.getElementById('dailyQuote');
+    const aEl = document.getElementById('dailyAuthor');
+    qEl.textContent = `"${q.text}"`;
+    aEl.textContent = q.author;
     setTimeout(() => {
-      quoteElem.innerHTML = finalHtml;
-      quoteElem.style.transition = 'opacity 0.35s ease';
-      quoteElem.style.opacity = '1';
-    }, 40);
-    
-    if(dateElem) {
-      dateElem.innerHTML = `<i class="far fa-calendar-check"></i> ${formatFancyDate()}  |  #DailyRenewal`;
+      qEl.classList.add('visible');
+      aEl.classList.add('visible');
+    }, 100);
+  }
+
+  loadDailyQuote();
+
+  /* ── FLOATING PARTICLES ── */
+  function createParticles() {
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.bottom = '-10px';
+      p.style.animationDuration = (8 + Math.random() * 12) + 's';
+      p.style.animationDelay = (Math.random() * 15) + 's';
+      p.style.width = p.style.height = (Math.random() > 0.5 ? '2px' : '3px');
+      document.body.appendChild(p);
     }
   }
-  
-  // auto daily refresh without reload (date change detection)
-  let lastDate = new Date().toDateString();
-  
-  function checkAndRefresh() {
-    const currentDate = new Date().toDateString();
-    if(currentDate !== lastDate) {
-      lastDate = currentDate;
-      updateDailyCreative();
-      // animate creative block as visual feedback
-      const creativeDiv = document.querySelector('.creative-daily');
-      if(creativeDiv) {
-        creativeDiv.style.transform = 'scale(1.01)';
-        setTimeout(() => { if(creativeDiv) creativeDiv.style.transform = ''; }, 400);
-      }
-    }
+  createParticles();
+
+  /* ── AUTO REFRESH AT MIDNIGHT ── */
+  function scheduleRefresh() {
+    const now = new Date();
+    const midnight = new Date(now);
+    midnight.setHours(24, 0, 5, 0);
+    const ms = midnight - now;
+    setTimeout(() => { location.reload(); }, ms);
   }
-  
-  updateDailyCreative();
-  lastDate = new Date().toDateString();
-  setInterval(checkAndRefresh, 45 * 60 * 1000); // check every 45 min
-  
-  // visibility change to update if needed
-  document.addEventListener('visibilitychange', () => {
-    if(!document.hidden) checkAndRefresh();
-  });
-  
-  // Additional Gloss & Hover animation for pills & buttons
-  const allPills = document.querySelectorAll('.pill');
-  allPills.forEach(p => {
-    p.addEventListener('mouseenter', () => {
-      p.style.transition = 'all 0.25s cubic-bezier(0.2,0.9,0.4,1.1)';
-    });
-  });
-  
-  // Adding smooth entrance to glass card
-  const mainCard = document.querySelector('.glass-card');
-  if(mainCard) {
-    mainCard.style.animation = 'fadeSlideUp 0.7s ease-out';
-  }
-  
-  // avatar gentle floating effect
-  const avatar = document.querySelector('.avatar-frame');
-  if(avatar) {
-    avatar.addEventListener('mouseenter', () => {
-      avatar.style.animation = 'floatSoft 1.2s infinite ease';
-    });
-    avatar.addEventListener('mouseleave', () => {
-      avatar.style.animation = 'none';
-    });
-  }
-  
-  // extra micro-interaction: location card glossy hover
-  const locCard = document.querySelector('.location-card');
-  if(locCard) {
-    locCard.addEventListener('mouseenter', () => {
-      locCard.style.transform = 'translateY(-3px)';
-      locCard.style.transition = '0.2s';
-      locCard.style.boxShadow = '0 15px 25px -12px rgba(0,0,0,0.2)';
-    });
-    locCard.addEventListener('mouseleave', () => {
-      locCard.style.transform = 'translateY(0)';
-      locCard.style.boxShadow = 'none';
-    });
-  }
-  
-  // office tooltip and additional glam: ensures phone number click to call.
-  console.log("Legal Associates — Pune Office | Daily Refresh Active | Glossy Animations");
+  scheduleRefresh();
 </script>
 </body>
-  </html>
+</html>
